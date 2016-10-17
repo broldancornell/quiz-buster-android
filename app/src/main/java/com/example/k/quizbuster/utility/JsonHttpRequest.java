@@ -46,6 +46,7 @@ public class JsonHttpRequest extends AsyncTask<Void, Void, Void> {
 
             URLConnection conn = url.openConnection();
             conn.setDoOutput(true);
+            conn.setRequestProperty("connection", "close");
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
             wr.flush();
 
