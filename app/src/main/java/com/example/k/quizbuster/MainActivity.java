@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            //decrypt JSOn object
+            //decrypt JSON object
             JSONObject data = new JSONObject(result.getString("data"));
             if(data == null){
                 Log.e(this.getClass().getSimpleName(), "HTTP result did not include data object");
