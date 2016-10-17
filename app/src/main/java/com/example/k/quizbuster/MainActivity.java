@@ -11,19 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.k.quizbuster.utility.Constants;
 import com.example.k.quizbuster.utility.JsonHttpRequest;
 import com.example.k.quizbuster.utility.JsonHttpRequestCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.regex.Pattern;
-
 public class MainActivity extends AppCompatActivity {
 
-    private final String serverAddress = "http://quizbuster.co.nf//service/buster/validate.php?game_code=";
+    private final String serverAddress = Constants.HOST_NAME + "/service/buster/validate.php?game_code=";
 
     private Typeface fontStyle;  // Typeface for Font style
     private EditText editTextGameCode; //game code
@@ -44,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void prepareWidgets(){
         editTextGameCode = (EditText) findViewById(R.id.edit_text_game_code);
-        buttonSendGameCode = (Button)   findViewById(R.id.btnSendGameCode);
-        fontStyle = Typeface.createFromAsset(getAssets(), "TimKid.ttf");
+        buttonSendGameCode = (Button)   findViewById(R.id.button_send_game_code);
+        fontStyle = Typeface.createFromAsset(getAssets(), Constants.FONT_FILE_NAME);
         editTextGameCode.setTypeface(fontStyle);
         buttonSendGameCode.setTypeface(fontStyle);
 
         this.progressDialog = new ProgressDialog(this);
         this.progressDialog.setMessage("Please wait");
+
+        editTextGameCode.setText("");
 
     }
 
