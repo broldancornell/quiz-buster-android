@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String serverAddress = Constants.HOST_NAME + "/service/buster/validate.php?game_code=";
+    private final String validationEndPoint = Constants.HOST_NAME + "/service/buster/validate.php?game_code=";
 
     private Typeface fontStyle;  // Typeface for Font style
     private EditText editTextGameCode; //game code
@@ -64,10 +64,9 @@ public class MainActivity extends AppCompatActivity {
         this.gameCode = gameCode;
         this.progressDialog.show();
 
-        JsonHttpRequest request = new JsonHttpRequest(serverAddress + gameCode, new JsonHttpRequestCallback() {
+        JsonHttpRequest request = new JsonHttpRequest(validationEndPoint + gameCode, new JsonHttpRequestCallback() {
             @Override
             public void onCompleted(JSONObject data) {
-                progressDialog.hide();
                 processValidationResult(data);
             }
 
@@ -84,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     private void processValidationResult(JSONObject result){
         if(result == null){
             Log.e(this.getClass().getSimpleName(), "Result JSON is null.");
+            progressDialog.hide();
             return;
         }
 
@@ -112,9 +112,11 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (JSONException exception) {
             Log.e(this.getClass().getSimpleName(), "JSON exception encountered", exception);
-            return;
-        }
+        }finally {
 
+            progressDialog.hide();
+
+        }
 
     }
 
