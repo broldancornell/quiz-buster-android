@@ -1,4 +1,4 @@
-package kiwidigital.com.quizbusterandroid;
+package com.example.k.quizbuster;
 
 import org.junit.Test;
 

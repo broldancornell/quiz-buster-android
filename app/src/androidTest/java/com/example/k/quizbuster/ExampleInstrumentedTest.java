@@ -1,4 +1,4 @@
-package kiwidigital.com.quizbusterandroid;
+package com.example.k.quizbuster;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("kiwidigital.com.quizbusterandroid", appContext.getPackageName());
+        assertEquals("com.example.k.quizbuster", appContext.getPackageName());
     }
 }

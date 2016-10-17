@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/background_light" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:text="Question : "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/txtQuestion"
+            android:layout_weight="0.01"
+            android:gravity="right|center_vertical"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <TextView
+            android:text="01"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/txtQuestionNumber"
+            android:layout_weight="0.02"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:text="        time : "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/txtTime"
+            android:layout_weight="0.01"
+            android:gravity="right|center_vertical"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <TextView
+            android:text="20"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/txtTimeNumber"
+            android:layout_weight="0.02"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            app:srcCompat="@drawable/star"
+            android:id="@+id/btnAnswer1"
+            android:elevation="0dp"
+            android:background="@android:color/holo_red_dark"
+            android:onClick="onBtnAnswer1"
+            android:scaleType="fitXY"
+            android:layout_weight="1"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+        <ImageButton
+            app:srcCompat="@drawable/cloud"
+            android:id="@+id/btnAnswer2"
+            android:background="@android:color/holo_blue_bright"
+            android:onClick="onBtnAnswer2"
+            android:scaleType="fitXY"
+            android:layout_weight="1"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            app:srcCompat="@drawable/moon"
+            android:id="@+id/btnAnswer3"
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_light"
+            android:onClick="onBtnAnswer3"
+            android:scaleType="fitXY"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+        <ImageButton
+            app:srcCompat="@drawable/sun"
+            android:id="@+id/btnAnswer4"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:onClick="onBtnAnswer4"
+            android:scaleType="fitXY"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/result"
+        android:id="@+id/btnShowResult"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="20dp"
+        android:onClick="onResultClicked" />
+</LinearLayout>
