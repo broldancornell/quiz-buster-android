@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QuizBuster</string>
+    <string name="hint_quiz_code">Quiz Code</string>
+    <string name="button_enter">Enter</string>
 </resources>

@@ -3,4 +3,5 @@
     <color name="colorPrimary">#ef65df</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#b358f8</color>
+    <color name="utilityButtonColor">#01baef</color>
 </resources>

@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtgame_code    = (EditText) findViewById(R.id.txtgame_code);
+        txtgame_code    = (EditText) findViewById(R.id.edit_text_game_code);
         btnSendGameCode = (Button)   findViewById(R.id.btnSendGameCode);
 
         fontStyle = Typeface.createFromAsset(getAssets(), "TimKid.ttf");
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         btnSendGameCode.setTypeface(fontStyle);
     }
 
-    public void onbtnSendGameCode(View v) {
+    public void enterGameCode(View v) {
         String game_code = txtgame_code.getText().toString();
 
 

@@ -16,7 +16,7 @@
 
     <ImageView
         app:srcCompat="@drawable/logo"
-        android:id="@+id/imageView1"
+        android:id="@+id/image_view_game_logo"
         android:layout_width="match_parent"
         android:layout_weight="0.13"
         android:layout_marginTop="10dp"
