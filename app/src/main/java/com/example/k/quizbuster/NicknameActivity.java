@@ -8,56 +8,51 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.k.quizbuster.utility.Constants;
 
 public class NicknameActivity extends AppCompatActivity {
 
-    TextView txtFixedQuizCode;
-    EditText txtNickname;
-    Button   btnEnter;
-    Button   btnGoBack;
-    String   quizcode;
-    String   saveNickname;
+    private TextView textViewQuizCode;
+    private EditText editTextNickname;
+    private Button buttonEnter, buttonGoBack;
+    private String quizCode;
 
-    Typeface fontStyle;
+    private Typeface fontStyle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nickname);
 
-        txtFixedQuizCode = (TextView) findViewById(R.id.txtFixedQuizCode);
-        txtNickname      = (EditText) findViewById(R.id.txtNickname);
-        btnEnter         = (Button)   findViewById(R.id.btnEnter);
-        btnGoBack        = (Button)   findViewById(R.id.btnGoBack);
+        getActivityArguments();
+        prepareWidgets();
+    }
 
-        fontStyle = Typeface.createFromAsset(getAssets(), "TimKid.ttf");
-        txtFixedQuizCode.setTypeface(fontStyle);
-        txtNickname.setTypeface(fontStyle);
-        btnEnter.setTypeface(fontStyle);
-        btnGoBack.setTypeface(fontStyle);
+    private void getActivityArguments(){
+        quizCode = this.getIntent().getExtras().getString("entered_quiz_code");
+    }
 
+    private void prepareWidgets(){
+        textViewQuizCode = (TextView) findViewById(R.id.text_view_quiz_code);
+        editTextNickname = (EditText) findViewById(R.id.edit_text_nickname);
+        buttonEnter = (Button) findViewById(R.id.button_enter);
+        buttonGoBack = (Button) findViewById(R.id.button_go_back);
 
-        quizcode = this.getIntent().getExtras().getString("entered_quiz_code");
+        fontStyle = Typeface.createFromAsset(getAssets(), Constants.FONT_FILE_NAME);
+        textViewQuizCode.setTypeface(fontStyle);
+        editTextNickname.setTypeface(fontStyle);
+        buttonEnter.setTypeface(fontStyle);
+        buttonGoBack.setTypeface(fontStyle);
 
-        txtFixedQuizCode.setText(quizcode);
+        textViewQuizCode.setText(quizCode);
     }
 
     public void onNicknameEnterClicked(View v) {
         Intent questionActivity = new Intent(this, QuestionActivity.class);
 
-        saveNickname = txtNickname.getText().toString();  //convert entered quiz code into string type
-
-        /*
-        saveNickname을 DB로 보내서 저장한다.
-
-        서버컴퓨터에서는 MySQL에 닉네임을 저장하면서 동시에 모니터에 보여준다.
-
-        DB 입장에서는 닉네임에 맞는 테이블들을 준비한다.
-
-         */
-        Toast.makeText(this,"Your Nickname : " + saveNickname, Toast.LENGTH_SHORT).show();
-        questionActivity.putExtra("userNickname", saveNickname);  //pass the value of variable quizcode into NicknameActivity
+        String saveNickname = editTextNickname.getText().toString();  //convert entered quiz code into string type
+        questionActivity.putExtra("userNickname", saveNickname);  //pass the value of variable quizCode into NicknameActivity
         this.startActivity(questionActivity);
     }
 
