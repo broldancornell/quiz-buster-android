@@ -59,7 +59,7 @@ public class JsonHttpRequest extends AsyncTask<Void, Void, Void> {
             // Read Server Response
             while((line = reader.readLine()) != null)
             {
-                // Append server response in string
+                // Append server response in String
                 sb.append(line + "");
             }
 
@@ -74,7 +74,6 @@ public class JsonHttpRequest extends AsyncTask<Void, Void, Void> {
         {
             try
             {
-
                 reader.close();
             }
 
