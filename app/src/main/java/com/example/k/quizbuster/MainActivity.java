@@ -40,31 +40,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prepareWidgets(){
+        //get objects from layout
         editTextGameCode = (EditText) findViewById(R.id.edit_text_game_code);
         buttonSendGameCode = (Button)   findViewById(R.id.button_send_game_code);
+
+        //changed font style
         fontStyle = Typeface.createFromAsset(getAssets(), Constants.FONT_FILE_NAME);
+
         editTextGameCode.setTypeface(fontStyle);
         buttonSendGameCode.setTypeface(fontStyle);
 
+        //create progress dialog
         this.progressDialog = new ProgressDialog(this);
+        //set the text
         this.progressDialog.setMessage("Please wait");
 
-        editTextGameCode.setText("");
+        editTextGameCode.setText("9999");
 
     }
 
     public void enterGameCode(View view) {
+        //get the text from the edit text widget
         final String gameCode = editTextGameCode.getText().toString();
 
+        //validate input by checking if it is empty.
         if(gameCode.isEmpty()) {
+            //show the error to the user then exit
             Toast.makeText(view.getContext(), "Please provide a game code", Toast.LENGTH_LONG).show();
             return;
         }
 
+        //save the game code as a local variable
         this.gameCode = gameCode;
+        //show the progress dialog to 1. let the user know that it is processing. 2. Prevent further action from the user.
         this.progressDialog.show();
 
-        JsonHttpRequest request = new JsonHttpRequest(validationEndPoint + gameCode, new JsonHttpRequestCallback() {
+        String url = validationEndPoint + gameCode;
+
+        //prepare HTTP request to validate the game code through the server
+        JsonHttpRequest request = new JsonHttpRequest(url, new JsonHttpRequestCallback() {
             @Override
             public void onCompleted(JSONObject data) {
                 processValidationResult(data);
@@ -90,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             int status = result.getInt("status");
             String statusMessage = result.getString("status_message");
+            // 200 = success standard HTTP code
             if(status != 200){
                 Log.e(this.getClass().getSimpleName(), "HTTP result status indicated an error: " + statusMessage);
                 return;
@@ -105,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             boolean available = data.getBoolean("available");
 
             if(available){
-                moveOnToNickNameActivity();
+                moveOnToNicknameActivity();
             }else{
                 Toast.makeText(this, "Game code is invalid", Toast.LENGTH_LONG).show();
             }
@@ -113,14 +128,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException exception) {
             Log.e(this.getClass().getSimpleName(), "JSON exception encountered", exception);
         }finally {
-
+            //after process data
             progressDialog.hide();
 
         }
 
     }
 
-    private void moveOnToNickNameActivity(){
+    private void moveOnToNicknameActivity(){
 
         Intent nicknameActivity = new Intent(this, NicknameActivity.class);
 
