@@ -151,10 +151,10 @@ public class NicknameActivity extends AppCompatActivity {
     }
 
     private void moveToWaitingActivity(){
-        Intent questionActivity = new Intent(this, QuestionActivity.class);
+        Intent loadActivity = new Intent(this, LoadActivity.class);
 
-        questionActivity.putExtra("entered_nickname", this.nickname);  //pass the value of variable quizCode into NicknameActivity
-        questionActivity.putExtra("entered_quiz_code", this.quizCode);  //pass the value of variable quizCode into NicknameActivity
-        this.startActivity(questionActivity);
+        loadActivity.putExtra("entered_nickname", this.nickname);  //pass the value of variable quizCode into NicknameActivity
+        loadActivity.putExtra("entered_quiz_code", this.quizCode);  //pass the value of variable quizCode into NicknameActivity
+        this.startActivity(loadActivity);
     }
 }
