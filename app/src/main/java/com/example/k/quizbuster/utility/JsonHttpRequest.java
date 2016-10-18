@@ -46,7 +46,6 @@ public class JsonHttpRequest extends AsyncTask<Void, Void, Void> {
 
             URLConnection conn = url.openConnection();
             conn.setDoOutput(true);
-            conn.setRequestProperty("connection", "close");
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
             wr.flush();
 
@@ -59,7 +58,7 @@ public class JsonHttpRequest extends AsyncTask<Void, Void, Void> {
             // Read Server Response
             while((line = reader.readLine()) != null)
             {
-                // Append server response in String
+                // Append server response in string
                 sb.append(line + "");
             }
 
@@ -74,6 +73,7 @@ public class JsonHttpRequest extends AsyncTask<Void, Void, Void> {
         {
             try
             {
+
                 reader.close();
             }
 

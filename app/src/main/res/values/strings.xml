@@ -2,8 +2,4 @@
     <string name="app_name">QuizBuster</string>
     <string name="hint_quiz_code">Quiz Code</string>
     <string name="button_enter">Enter</string>
-    <string name="hint_nickname">Nickname</string>
-
-    <string name="accepted_nickname_characters">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="button_go_back">Go Back</string>
 </resources>
