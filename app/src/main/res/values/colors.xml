@@ -5,4 +5,5 @@
     <color name="colorAccent">#01baef</color>
     <color name="utilityButtonColor">#01baef</color>
     <color name="text_color">#171a21</color>
+    <color name="white">#ffffff</color>
 </resources>
