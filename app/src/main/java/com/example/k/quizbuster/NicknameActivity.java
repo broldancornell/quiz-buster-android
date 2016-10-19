@@ -1,7 +1,9 @@
 package com.example.k.quizbuster;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -153,8 +155,14 @@ public class NicknameActivity extends AppCompatActivity {
     private void moveToWaitingActivity(){
         Intent loadActivity = new Intent(this, LoadActivity.class);
 
-        loadActivity.putExtra("entered_nickname", this.nickname);  //pass the value of variable quizCode into NicknameActivity
-        loadActivity.putExtra("entered_quiz_code", this.quizCode);  //pass the value of variable quizCode into NicknameActivity
+        //prepare quiz values
+        SharedPreferences sharedPref = super.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(Constants.CURRENT_GAME_CODE_KEY, this.quizCode);
+        editor.putString(Constants.CURRENT_NICKNAME_KEY, this.nickname);
+        editor.putInt(Constants.CURRENT_QUESTION_KEY, 1);
+        editor.apply();
+
         this.startActivity(loadActivity);
     }
 }

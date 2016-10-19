@@ -1,7 +1,9 @@
 package com.example.k.quizbuster;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,8 +37,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        prepareInitialValues();
+
         prepareWidgets();
 
+    }
+
+    private void prepareInitialValues(){
+        SharedPreferences sharedPref = super.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(Constants.CURRENT_GAME_CODE_KEY, null);
+        editor.putString(Constants.CURRENT_NICKNAME_KEY, null);
+        editor.putInt(Constants.CURRENT_QUESTION_KEY, 0);
+        editor.apply();
     }
 
     private void prepareWidgets(){
