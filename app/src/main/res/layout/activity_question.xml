@@ -4,124 +4,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/background_light" >
+    android:background="@color/white"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="0dp"
+        android:layout_weight="0.2">
 
         <TextView
-            android:text="Question : "
-            android:layout_width="wrap_content"
+            android:text="@string/question_text_view"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/txtQuestion"
-            android:layout_weight="0.01"
-            android:gravity="right|center_vertical"
+            android:id="@+id/text_view_question"
+            android:gravity="start|center_vertical"
             android:textStyle="bold"
-            android:textSize="20dp" />
-
-        <TextView
-            android:text="01"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtQuestionNumber"
-            android:layout_weight="0.02"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center" >
 
         <TextView
-            android:text="        time : "
+            android:text="@string/time_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/txtTime"
-            android:layout_weight="0.01"
-            android:gravity="right|center_vertical"
-            android:textStyle="bold"
-            android:textSize="20dp" />
-
-        <TextView
-            android:text="20"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtTimeNumber"
-            android:layout_weight="0.02"
+            android:id="@+id/text_view_time_label"
             android:gravity="center_vertical"
             android:textStyle="bold"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/text_view_time_value"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="20" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.70"
+        android:weightSum="1">
 
-        <ImageButton
-            app:srcCompat="@drawable/star"
-            android:id="@+id/btnAnswer1"
-            android:elevation="0dp"
-            android:background="@android:color/holo_red_dark"
-            android:onClick="onBtnAnswer1"
-            android:scaleType="fitXY"
-            android:layout_weight="1"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:weightSum="1">
+            <ImageButton
+                app:srcCompat="@drawable/star"
+                android:id="@+id/button_answer_1"
+                android:background="@android:color/holo_red_dark"
+                android:onClick="onBtnAnswer1"
+                android:scaleType="fitCenter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="20dp" />
 
-        <ImageButton
-            app:srcCompat="@drawable/cloud"
-            android:id="@+id/btnAnswer2"
-            android:background="@android:color/holo_blue_bright"
-            android:onClick="onBtnAnswer2"
-            android:scaleType="fitXY"
-            android:layout_weight="1"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
+            <ImageButton
+                app:srcCompat="@drawable/cloud"
+                android:id="@+id/button_answer_2"
+                android:background="@android:color/holo_blue_dark"
+                android:onClick="onBtnAnswer2"
+                android:scaleType="fitCenter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="20dp" />
+        </TableRow>
 
-    </LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:weightSum="1">
+            <ImageButton
+                app:srcCompat="@drawable/moon"
+                android:id="@+id/button_answer_3"
+                android:background="@android:color/holo_green_light"
+                android:onClick="onBtnAnswer3"
+                android:scaleType="fitCenter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="20dp"/>
 
-    <LinearLayout
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            app:srcCompat="@drawable/moon"
-            android:id="@+id/btnAnswer3"
-            android:layout_weight="1"
-            android:background="@android:color/holo_green_light"
-            android:onClick="onBtnAnswer3"
-            android:scaleType="fitXY"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
-
-        <ImageButton
-            app:srcCompat="@drawable/sun"
-            android:id="@+id/btnAnswer4"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:onClick="onBtnAnswer4"
-            android:scaleType="fitXY"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
-    </LinearLayout>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/result"
-        android:id="@+id/btnShowResult"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="20dp"
-        android:onClick="onResultClicked" />
+            <ImageButton
+                app:srcCompat="@drawable/sun"
+                android:id="@+id/button_answer_4"
+                android:background="@android:color/holo_orange_light"
+                android:onClick="onBtnAnswer4"
+                android:scaleType="fitCenter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:padding="20dp"/>
+        </TableRow>
+    </TableLayout>
 </LinearLayout>
