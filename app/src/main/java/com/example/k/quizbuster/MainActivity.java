@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(Constants.CURRENT_GAME_CODE_KEY, null);
         editor.putString(Constants.CURRENT_NICKNAME_KEY, null);
-        editor.putInt(Constants.CURRENT_QUESTION_KEY, 0);
+        editor.putInt(Constants.LAST_QUESTION_KEY, -1);
+        editor.putBoolean(Constants.FETCHED_QUESTIONS_KEY, false);
         editor.apply();
     }
 

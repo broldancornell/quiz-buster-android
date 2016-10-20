@@ -153,15 +153,13 @@ public class NicknameActivity extends AppCompatActivity {
     }
 
     private void moveToWaitingActivity(){
-        Intent loadActivity = new Intent(this, LoadActivity.class);
 
+        Intent loadActivity = new Intent(this, LoadActivity.class);
         //prepare quiz values
-        SharedPreferences sharedPref = super.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(Constants.CURRENT_GAME_CODE_KEY, this.quizCode);
-        editor.putString(Constants.CURRENT_NICKNAME_KEY, this.nickname);
-        editor.putInt(Constants.CURRENT_QUESTION_KEY, 1);
-        editor.apply();
+        loadActivity.putExtra(Constants.CURRENT_GAME_CODE_KEY, this.quizCode);
+        loadActivity.putExtra(Constants.CURRENT_NICKNAME_KEY, this.nickname);
+        loadActivity.putExtra(Constants.LAST_QUESTION_KEY, 0);
+        loadActivity.putExtra(Constants.FETCHED_QUESTIONS_KEY, false);
 
         this.startActivity(loadActivity);
     }

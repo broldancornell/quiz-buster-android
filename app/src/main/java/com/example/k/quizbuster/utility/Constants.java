@@ -18,6 +18,8 @@ public class Constants {
 
     public final static String CURRENT_GAME_CODE_KEY = "CURRENT_GAME_CODE_KEY";
     public final static String CURRENT_NICKNAME_KEY = "CURRENT_NICKNAME_KEY";
-    public final static String CURRENT_QUESTION_KEY = "CURRENT_QUESTION_KEY";
+    public final static String LAST_QUESTION_KEY = "LAST_QUESTION_KEY";
+    public final static String FETCHED_QUESTIONS_KEY = "FETCHED_QUESTIONS_KEY";
 
+    public static final long QUESTION_FETCH_DELAY = 5 * 1000;
 }
