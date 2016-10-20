@@ -6,4 +6,5 @@
 
     <string name="accepted_nickname_characters">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="button_go_back">Go Back</string>
+    <string name="patience_virtue">Patience == Virtue</string>
 </resources>
