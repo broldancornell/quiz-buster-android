@@ -20,6 +20,7 @@ public class Constants {
     public final static String CURRENT_NICKNAME_KEY = "CURRENT_NICKNAME_KEY";
     public final static String LAST_QUESTION_KEY = "LAST_QUESTION_KEY";
     public final static String FETCHED_QUESTIONS_KEY = "FETCHED_QUESTIONS_KEY";
+    public final static String BUST_POINTS_KEY = "BUST_POINTS_KEY";
 
-    public static final long QUESTION_FETCH_DELAY = 5 * 1000;
+    public static final long DATA_FETCH_DELAY = 5 * 1000;
 }
