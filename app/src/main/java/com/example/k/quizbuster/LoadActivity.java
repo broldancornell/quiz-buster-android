@@ -160,7 +160,6 @@ public class LoadActivity extends AppCompatActivity {
         questionActivity.putExtra(Constants.CURRENT_GAME_CODE_KEY, this.gameCode);
         questionActivity.putExtra(Constants.CURRENT_NICKNAME_KEY, this.nickname);
         questionActivity.putExtra(Constants.LAST_QUESTION_KEY, questionNumber);
-        questionActivity.putExtra(Constants.FETCHED_QUESTIONS_KEY, fetched);
 
         this.startActivity(questionActivity);
     }
