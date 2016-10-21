@@ -18,6 +18,7 @@ public class LoadActivity extends AppCompatActivity {
 
     private final String questionsEndPoint = Constants.HOST_NAME + "/service/buster/questions.php?game_code=";
     private final String currentQuestionEndPoint = Constants.HOST_NAME + "/service/buster/current.php?game_code=";
+    private final String resultEndPoint = Constants.HOST_NAME + "/service/buster/results.php?";
 
     private boolean fetched;
     private String gameCode;
@@ -64,9 +65,8 @@ public class LoadActivity extends AppCompatActivity {
             if(count > 0){
                 getNextQuestion();
             }else{
-                //end if no count
-                Intent resultActivity = new Intent(this, ResultActivity.class);
-                this.startActivity(resultActivity);
+                //get result if no count
+                fetchResults();
             }
         }
     }
@@ -145,7 +145,58 @@ public class LoadActivity extends AppCompatActivity {
             if(currentQuestion != lastQuestion){
                 moveToAnswerActivity(currentQuestion);
             }else{
-                new Handler().postDelayed(new QuestionFetchLoop(), Constants.QUESTION_FETCH_DELAY);
+                new Handler().postDelayed(new QuestionFetchLoop(), Constants.DATA_FETCH_DELAY);
+            }
+
+        } catch (JSONException exception) {
+            Log.e(this.getClass().getSimpleName(), "JSON exception encountered", exception);
+        }
+    }
+
+    private void fetchResults() {
+        String parameters = "game_code=" + this.gameCode + "&nickname=" + this.nickname;
+
+        JsonHttpRequest request = new JsonHttpRequest(resultEndPoint + parameters, new JsonHttpRequestCallback() {
+            @Override
+            public void onCompleted(JSONObject result) {
+                parseResultData(result);
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e(this.getClass().getSimpleName(), message);
+            }
+        });
+
+        request.execute();
+    }
+
+    private void parseResultData(JSONObject result) {
+        if(result == null){
+            Log.e(this.getClass().getSimpleName(), "Result JSON is null.");
+            return;
+        }
+
+        try {
+            int status = result.getInt("status");
+            String statusMessage = result.getString("status_message");
+            if(status != 200){
+                Log.e(this.getClass().getSimpleName(), "HTTP result status indicated an error: " + statusMessage);
+                return;
+            }
+
+            //decrypt JSON object
+            JSONObject data = new JSONObject(result.getString("data"));
+            if(data == null){
+                Log.e(this.getClass().getSimpleName(), "HTTP result did not include data object");
+                return;
+            }
+
+            boolean available = data.getBoolean("available");
+            if(available){
+                moveToResultActivity(Integer.valueOf(data.getString("total_points")));
+            }else{
+                new Handler().postDelayed(new ResultFetchLoop(), Constants.DATA_FETCH_DELAY);
             }
 
         } catch (JSONException exception) {
@@ -164,11 +215,33 @@ public class LoadActivity extends AppCompatActivity {
         this.startActivity(questionActivity);
     }
 
+    private void moveToResultActivity(int bustPoints){
+        Intent resultActivity = new Intent(this, ResultActivity.class);
+
+        resultActivity.putExtra(Constants.CURRENT_GAME_CODE_KEY, this.gameCode);
+        resultActivity.putExtra(Constants.CURRENT_NICKNAME_KEY, this.nickname);
+        resultActivity.putExtra(Constants.BUST_POINTS_KEY, bustPoints);
+
+        this.startActivity(resultActivity);
+    }
+
     class QuestionFetchLoop implements Runnable{
 
         @Override
         public void run() {
             getNextQuestion();
         }
+    }
+
+    class ResultFetchLoop implements Runnable{
+
+        @Override
+        public void run() {
+            fetchResults();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

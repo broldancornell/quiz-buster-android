@@ -278,4 +278,8 @@ public class QuestionActivity extends AppCompatActivity {
             timer.kill();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
 }
