@@ -69,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
         //set the text
         this.progressDialog.setMessage("Please wait");
 
-        editTextGameCode.setText("9999");
-
     }
 
     public void enterGameCode(View view) {
