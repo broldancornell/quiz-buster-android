@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,6 +61,14 @@ public class NicknameActivity extends AppCompatActivity {
         this.progressDialog.setMessage("Please wait");
 
         textViewQuizCode.setText(quizCode);
+
+        buttonGoBack.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                onGoBackClicked(v);
+                return true;
+            }
+        });
     }
 
     public void onNicknameEnterClicked(View view) {

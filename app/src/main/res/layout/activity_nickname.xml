@@ -80,7 +80,6 @@
         <Button
             android:id="@+id/button_go_back"
             android:text="@string/button_go_back"
-            android:onClick="onGoBackClicked"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.25"
