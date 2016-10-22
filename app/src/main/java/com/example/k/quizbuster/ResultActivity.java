@@ -57,7 +57,9 @@ public class ResultActivity extends AppCompatActivity {
 
     public void backToMainButtonClicked(View v) {
         Intent mainActivity = new Intent(this, MainActivity.class);
+        mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         this.startActivity(mainActivity);
+        this.finish();
     }
 
     @Override
