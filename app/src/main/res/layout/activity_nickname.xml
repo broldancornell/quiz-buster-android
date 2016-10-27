@@ -50,12 +50,12 @@
             android:layout_marginStart="@dimen/utility_edit_text_margin"
             android:layout_marginRight="@dimen/utility_edit_text_margin"
             android:layout_marginEnd="@dimen/utility_edit_text_margin"
-            android:textSize="40sp"
-            android:textAlignment="center"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:digits="@string/accepted_nickname_characters"
             android:background="@drawable/utility_edit_text_mobile"
-            android:maxLength="9"/>
+            android:maxLength="9"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/button_enter"
@@ -75,7 +75,8 @@
             android:layout_marginEnd="@dimen/utility_button_margin"
             android:textStyle="bold"
             android:textAllCaps="false"
-            style="?android:attr/borderlessButtonStyle" />
+            style="?android:attr/borderlessButtonStyle"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/button_go_back"
@@ -94,7 +95,8 @@
             android:layout_marginEnd="@dimen/utility_button_margin"
             android:textStyle="bold"
             android:textAllCaps="false"
-            style="?android:attr/borderlessButtonStyle" />
+            style="?android:attr/borderlessButtonStyle"
+            android:textAlignment="center" />
     </LinearLayout>
 
 </LinearLayout>

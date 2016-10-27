@@ -14,12 +14,12 @@
     <ProgressBar
         android:id="@+id/load_progress"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_height="180dp" />
+        android:layout_width="match_parent"
+        android:layout_height="500dp" />
 
     <TextView
         android:id="@+id/text_view_status"
@@ -29,7 +29,7 @@
         android:layout_below="@+id/load_progress"
         android:gravity="center"
         android:layout_marginTop="30dp"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:maxLines="1"
         android:textStyle="normal|bold"
         android:textAlignment="center" />

@@ -15,7 +15,7 @@
         android:id="@+id/load_progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -30,5 +30,7 @@
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:textSize="30sp"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
 </RelativeLayout>
