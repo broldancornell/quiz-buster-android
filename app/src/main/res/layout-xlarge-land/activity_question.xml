@@ -20,7 +20,7 @@
             android:id="@+id/text_view_question"
             android:gravity="start|center_vertical"
             android:textStyle="bold"
-            android:textSize="25sp" />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -38,7 +38,7 @@
             android:id="@+id/text_view_time_label"
             android:gravity="center_vertical"
             android:textStyle="bold"
-            android:textSize="25sp" />
+            android:textSize="40sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
             android:id="@+id/text_view_time_value"
             android:gravity="center_vertical"
             android:textStyle="bold"
-            android:textSize="25sp"
+            android:textSize="40sp"
             android:text="20" />
 
     </LinearLayout>
