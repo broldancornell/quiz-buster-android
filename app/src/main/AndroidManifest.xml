@@ -21,9 +21,9 @@
         </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity android:name=".NicknameActivity"/>
-        <activity android:name=".QuestionActivity"/>
-        <activity android:name=".ResultActivity"/>
-        <activity android:name=".LoadActivity"/>
+        <activity android:name=".QuestionActivity" android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".LoadActivity" android:configChanges="orientation|screenSize|keyboardHidden"/>
         <provider android:authorities="com.facebook.app.FacebookContentProvider1087010071415769"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
