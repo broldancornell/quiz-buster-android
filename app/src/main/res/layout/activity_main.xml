@@ -72,5 +72,6 @@
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle"
             android:textAlignment="center" />
+
     </LinearLayout>
 </LinearLayout>

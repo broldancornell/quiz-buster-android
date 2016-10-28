@@ -3,6 +3,10 @@
     package="com.example.k.quizbuster">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+
 
     <application
         android:allowBackup="true"
@@ -13,14 +17,26 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NicknameActivity"></activity>
-        <activity android:name=".QuestionActivity"></activity>
-        <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".LoadActivity"></activity>
+
+        <activity android:name=".NicknameActivity" >
+        </activity>
+
+        <activity android:name=".QuestionActivity" >
+        </activity>
+
+        <activity android:name=".ResultActivity" >
+
+        </activity>
+
+        <activity android:name=".LoadActivity" >
+        </activity>
+
+        <activity android:name=".FragmentActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
     </application>
 
 </manifest>

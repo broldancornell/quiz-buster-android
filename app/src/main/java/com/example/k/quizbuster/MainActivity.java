@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -37,11 +39,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //check internet use  begin
+        if(isConnectingToInternet(MainActivity.this))
+        {
+            Toast.makeText(getApplicationContext(),"Internet is available",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"Internet is NOT available",Toast.LENGTH_SHORT).show();
+        }
+        //check internet use  end
+
+
+
+
         prepareInitialValues();
 
         prepareWidgets();
 
     }
+
+    //check internet use  begin
+    public static boolean isConnectingToInternet(Context context)
+    {
+        ConnectivityManager connectivity =
+                (ConnectivityManager) context.getSystemService(
+                        Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+        }
+        return false;
+    }
+    //check internet use  end
+
+
+
 
     private void prepareInitialValues(){
         SharedPreferences sharedPref = super.getPreferences(Context.MODE_PRIVATE);
@@ -154,4 +193,6 @@ public class MainActivity extends AppCompatActivity {
         nicknameActivity.putExtra("entered_quiz_code", gameCode);
         this.startActivity(nicknameActivity);
     }
+
+
 }
