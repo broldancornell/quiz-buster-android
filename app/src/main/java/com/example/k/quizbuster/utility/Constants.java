@@ -23,4 +23,5 @@ public class Constants {
     public final static String BUST_POINTS_KEY = "BUST_POINTS_KEY";
 
     public static final long DATA_FETCH_DELAY = 5 * 1000;
+    public static final long PAUSE_FETCH_DELAY = 1 * 1000;
 }

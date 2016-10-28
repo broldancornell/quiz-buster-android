@@ -25,10 +25,14 @@ public class LoadActivity extends AppCompatActivity {
     private int lastQuestion;
     private String nickname;
 
+    private static boolean paused;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
+
+        paused = false;
 
         getActivityArguments();
 
@@ -57,7 +61,18 @@ public class LoadActivity extends AppCompatActivity {
                     Log.e(this.getClass().getSimpleName(), message);
                 }
             });
-            request.execute();
+
+            if(paused){
+                Log.i(getClass().getSimpleName(), "Paused...");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        determineAction();
+                    }
+                }, Constants.PAUSE_FETCH_DELAY);
+            }else{
+                request.execute();
+            }
 
         }else{
             int count = QuestionsHandler.getInstance().getQuestionsCount();
@@ -86,7 +101,17 @@ public class LoadActivity extends AppCompatActivity {
             }
         });
 
-        request.execute();
+        if(paused){
+            Log.i(getClass().getSimpleName(), "Paused...");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getNextQuestion();
+                }
+            }, Constants.PAUSE_FETCH_DELAY);
+        }else{
+            request.execute();
+        }
     }
 
     private void parseQuizzes(JSONObject result) {
@@ -167,8 +192,17 @@ public class LoadActivity extends AppCompatActivity {
                 Log.e(this.getClass().getSimpleName(), message);
             }
         });
-
-        request.execute();
+        if(paused){
+            Log.i(getClass().getSimpleName(), "Paused...");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    fetchResults();
+                }
+            }, Constants.PAUSE_FETCH_DELAY);
+        }else{
+            request.execute();
+        }
     }
 
     private void parseResultData(JSONObject result) {
@@ -239,6 +273,18 @@ public class LoadActivity extends AppCompatActivity {
         public void run() {
             fetchResults();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        paused = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        paused = false;
     }
 
     @Override
