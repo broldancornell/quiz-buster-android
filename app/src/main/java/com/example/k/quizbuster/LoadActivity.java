@@ -1,10 +1,12 @@
 package com.example.k.quizbuster;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.k.quizbuster.objects.QuestionsHandler;
 import com.example.k.quizbuster.utility.Constants;
@@ -34,6 +36,8 @@ public class LoadActivity extends AppCompatActivity {
 
         paused = false;
 
+        Typeface fontStyle = Typeface.createFromAsset(getAssets(), Constants.FONT_FILE_NAME);
+        ((TextView)findViewById(R.id.text_view_status)).setTypeface(fontStyle);
         getActivityArguments();
 
         determineAction();
