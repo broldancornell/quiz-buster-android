@@ -27,7 +27,8 @@
             android:layout_width="0dp"
             android:layout_marginTop="10dp"
             android:layout_weight="0.7"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
         <TextView
             android:id="@+id/text_view_quiz_code"
             android:layout_width="0dp"
