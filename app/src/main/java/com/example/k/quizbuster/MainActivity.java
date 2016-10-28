@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.k.quizbuster.utility.ConnectionManager;
 import com.example.k.quizbuster.utility.Constants;
 import com.example.k.quizbuster.utility.JsonHttpRequest;
 import com.example.k.quizbuster.utility.JsonHttpRequestCallback;
@@ -72,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void enterGameCode(View view) {
+        if(!ConnectionManager.isConnectedToTheInternet(view.getContext())){
+            ConnectionManager.showConnectionAlert(view.getContext());
+            return;
+        }
         //get the text from the edit text widget
         final String gameCode = editTextGameCode.getText().toString();
 

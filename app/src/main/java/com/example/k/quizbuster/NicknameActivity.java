@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.k.quizbuster.utility.ConnectionManager;
 import com.example.k.quizbuster.utility.Constants;
 import com.example.k.quizbuster.utility.JsonHttpRequest;
 import com.example.k.quizbuster.utility.JsonHttpRequestCallback;
@@ -65,13 +66,23 @@ public class NicknameActivity extends AppCompatActivity {
         buttonGoBack.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                onGoBackClicked(v);
+
+                if(ConnectionManager.isConnectedToTheInternet(v.getContext())){
+                    onGoBackClicked(v);
+                }else{
+                    ConnectionManager.showConnectionAlert(v.getContext());
+                }
                 return true;
             }
         });
     }
 
     public void onNicknameEnterClicked(View view) {
+        if(!ConnectionManager.isConnectedToTheInternet(view.getContext())){
+            ConnectionManager.showConnectionAlert(view.getContext());
+            return;
+        }
+
         String nickname = editTextNickname.getText().toString();  //convert entered quiz code into string type
 
         if(nickname.isEmpty()) {
