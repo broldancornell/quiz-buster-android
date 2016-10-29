@@ -7,12 +7,12 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 
-public class FragmentActivity extends Activity {
+public class IntroduceActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
+        setContentView(R.layout.activity_introduce);
 
     }
 
@@ -21,9 +21,9 @@ public class FragmentActivity extends Activity {
         Fragment fr;
 
         if (v == findViewById(R.id.button2)) {
-            fr=new FragmentTwo();
+            fr=new IntroduceTwo();
         } else {
-            fr=new FragmentOne();
+            fr=new IntroduceOne();
         }
 
         final FragmentManager fm=getFragmentManager();

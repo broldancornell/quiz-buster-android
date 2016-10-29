@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.k.quizbuster.FragmentActivity"
+    tools:context="com.example.k.quizbuster.IntroduceActivity"
     android:orientation="vertical">
 
     <Button
@@ -34,7 +34,7 @@
         android:onClick="selectFrag" />
 
     <fragment
-        android:name="com.example.k.quizbuster.FragmentOne"
+        android:name="com.example.k.quizbuster.IntroduceOne"
         android:id="@+id/fragment_place"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

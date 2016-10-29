@@ -15,14 +15,9 @@ import android.widget.Toast;
 
 import com.example.k.quizbuster.utility.Constants;
 
-import com.example.k.quizbuster.utility.JsonHttpRequest;
-import com.example.k.quizbuster.utility.JsonHttpRequestCallback;
 import com.facebook.share.internal.ShareFeedContent;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 public class ResultActivity extends AppCompatActivity {
@@ -67,7 +62,7 @@ public class ResultActivity extends AppCompatActivity {
         if (id == R.id.aboutKiwiDigital) {
             Toast.makeText(ResultActivity.this, "You Clicked Kiwi Digital", Toast.LENGTH_SHORT).show();
 
-            Intent fragmentActivity = new Intent(this, FragmentActivity.class);
+            Intent fragmentActivity = new Intent(this, IntroduceActivity.class);
             this.startActivity(fragmentActivity);
         }
         else if (id == R.id.locations) {

@@ -20,7 +20,7 @@
         </activity>
 
 
-        <activity android:name=".FragmentActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+        <activity android:name=".IntroduceActivity" android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity android:name=".NicknameActivity"/>
