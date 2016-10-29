@@ -1,13 +1,21 @@
 package com.example.k.quizbuster;
 
 import android.content.Intent;
+
 import android.graphics.Color;
+
+import android.graphics.Typeface;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import android.widget.TextView;
+
 
 import com.example.k.quizbuster.objects.QuestionsHandler;
 import com.example.k.quizbuster.utility.Constants;
@@ -29,11 +37,17 @@ public class LoadActivity extends AppCompatActivity {
     private String nickname;
     private static int count = 1;
 
+    private static boolean paused;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
 
+        paused = false;
+
+        Typeface fontStyle = Typeface.createFromAsset(getAssets(), Constants.FONT_FILE_NAME);
+        ((TextView)findViewById(R.id.text_view_status)).setTypeface(fontStyle);
         getActivityArguments();
 
         determineAction();
@@ -98,7 +112,18 @@ public class LoadActivity extends AppCompatActivity {
                     Log.e(this.getClass().getSimpleName(), message);
                 }
             });
-            request.execute();
+
+            if(paused){
+                Log.i(getClass().getSimpleName(), "Paused...");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        determineAction();
+                    }
+                }, Constants.PAUSE_FETCH_DELAY);
+            }else{
+                request.execute();
+            }
 
         }else{
             int count = QuestionsHandler.getInstance().getQuestionsCount();
@@ -127,7 +152,17 @@ public class LoadActivity extends AppCompatActivity {
             }
         });
 
-        request.execute();
+        if(paused){
+            Log.i(getClass().getSimpleName(), "Paused...");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getNextQuestion();
+                }
+            }, Constants.PAUSE_FETCH_DELAY);
+        }else{
+            request.execute();
+        }
     }
 
     private void parseQuizzes(JSONObject result) {
@@ -208,8 +243,17 @@ public class LoadActivity extends AppCompatActivity {
                 Log.e(this.getClass().getSimpleName(), message);
             }
         });
-
-        request.execute();
+        if(paused){
+            Log.i(getClass().getSimpleName(), "Paused...");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    fetchResults();
+                }
+            }, Constants.PAUSE_FETCH_DELAY);
+        }else{
+            request.execute();
+        }
     }
 
     private void parseResultData(JSONObject result) {
@@ -280,6 +324,18 @@ public class LoadActivity extends AppCompatActivity {
         public void run() {
             fetchResults();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        paused = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        paused = false;
     }
 
     @Override

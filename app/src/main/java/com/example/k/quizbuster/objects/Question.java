@@ -7,11 +7,13 @@ package com.example.k.quizbuster.objects;
 public class Question{
 
     private int questionNumber;
+    private String questionText;
     private int secondsToAnswer;
     private int numberOfOptions;
 
-    public Question(int questionNumber, int secondsToAnswer, int numberOfOptions) {
+    public Question(int questionNumber, String questionText, int secondsToAnswer, int numberOfOptions) {
         this.questionNumber = questionNumber;
+        this.questionText = questionText;
         this.secondsToAnswer = secondsToAnswer;
         this.numberOfOptions = numberOfOptions;
     }
@@ -22,6 +24,14 @@ public class Question{
 
     public void setQuestionNumber(int questionNumber) {
         this.questionNumber = questionNumber;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
     public int getSecondsToAnswer() {

@@ -35,6 +35,26 @@
         android:textColor="@color/text_color"/>
 
     <Button
+        android:id="@+id/button_fb_share"
+        android:text="@string/share_on_fb"
+        android:onClick="shareOnFBClicked"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.10"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:textSize="30sp"
+        android:background="@drawable/utility_button_mobile"
+        android:layout_marginLeft="@dimen/utility_button_margin"
+        android:layout_marginStart="@dimen/utility_button_margin"
+        android:layout_marginRight="@dimen/utility_button_margin"
+        android:layout_marginEnd="@dimen/utility_button_margin"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <Button
         android:id="@+id/button_go_home"
         android:text="@string/button_go_back"
         android:onClick="backToMainButtonClicked"

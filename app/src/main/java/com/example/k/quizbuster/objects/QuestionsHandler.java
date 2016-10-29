@@ -40,7 +40,7 @@ public class QuestionsHandler {
             try {
                 JSONObject questionJson = array.getJSONObject(questionIndex);
 
-                this.questions.add(new Question(questionJson.getInt("question_number"), questionJson.getInt("time_limit"), questionJson.getInt("options")));
+                this.questions.add(new Question(questionJson.getInt("question_number"), questionJson.getString("question_text"), questionJson.getInt("time_limit"), questionJson.getInt("options")));
 
             } catch (JSONException exception) {
                 Log.e(super.getClass().getSimpleName(), "An exception occurred while trying to parse question data.", exception);

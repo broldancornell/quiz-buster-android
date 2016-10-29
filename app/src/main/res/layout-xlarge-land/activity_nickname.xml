@@ -14,30 +14,46 @@
     android:weightSum="1"
     android:background="@android:color/background_light" >
 
-    <ImageView
-        app:srcCompat="@drawable/logo"
-        android:id="@+id/image_view_game_logo"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.5"
-        android:layout_height="0dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="0.45"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center_vertical">
+        <ImageView
+            app:srcCompat="@drawable/logo"
+            android:id="@+id/image_view_game_logo"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.7"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/text_view_quiz_code"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:layout_gravity="center"
+            android:textSize="80sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/text_color"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <View android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_width="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.45"
         android:weightSum="1"
         android:orientation="vertical"
         android:layout_gravity="center">
-        <TextView
-            android:id="@+id/text_view_quiz_code"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.2"
-            android:layout_gravity="center"
-            android:textSize="45sp"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/text_color" />
+
 
         <EditText
             android:id="@+id/edit_text_nickname"
@@ -46,10 +62,10 @@
             android:layout_weight="0.3"
             android:hint="@string/hint_nickname"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/utility_edit_text_margin"
-            android:layout_marginStart="@dimen/utility_edit_text_margin"
-            android:layout_marginRight="@dimen/utility_edit_text_margin"
-            android:layout_marginEnd="@dimen/utility_edit_text_margin"
+            android:layout_marginLeft="@dimen/utility_landscape_table_edit_text_margin"
+            android:layout_marginStart="@dimen/utility_landscape_table_edit_text_margin"
+            android:layout_marginRight="@dimen/utility_landscape_table_edit_text_margin"
+            android:layout_marginEnd="@dimen/utility_landscape_table_edit_text_margin"
             android:textSize="50sp"
             android:textAlignment="center"
             android:textStyle="bold"
@@ -69,10 +85,10 @@
             android:gravity="center_vertical|center_horizontal|center"
             android:textSize="50sp"
             android:background="@drawable/utility_button_mobile"
-            android:layout_marginLeft="@dimen/utility_button_margin"
-            android:layout_marginStart="@dimen/utility_button_margin"
-            android:layout_marginRight="@dimen/utility_button_margin"
-            android:layout_marginEnd="@dimen/utility_button_margin"
+            android:layout_marginLeft="@dimen/utility_landscape_tablet_button_margin"
+            android:layout_marginStart="@dimen/utility_landscape_tablet_button_margin"
+            android:layout_marginRight="@dimen/utility_landscape_tablet_button_margin"
+            android:layout_marginEnd="@dimen/utility_landscape_tablet_button_margin"
             android:textStyle="bold"
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle"
@@ -89,10 +105,10 @@
             android:gravity="center_vertical|center_horizontal|center"
             android:textSize="50sp"
             android:background="@drawable/utility_button_mobile"
-            android:layout_marginLeft="@dimen/utility_button_margin"
-            android:layout_marginStart="@dimen/utility_button_margin"
-            android:layout_marginRight="@dimen/utility_button_margin"
-            android:layout_marginEnd="@dimen/utility_button_margin"
+            android:layout_marginLeft="@dimen/utility_landscape_tablet_button_margin"
+            android:layout_marginStart="@dimen/utility_landscape_tablet_button_margin"
+            android:layout_marginRight="@dimen/utility_landscape_tablet_button_margin"
+            android:layout_marginEnd="@dimen/utility_landscape_tablet_button_margin"
             android:textStyle="bold"
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle"

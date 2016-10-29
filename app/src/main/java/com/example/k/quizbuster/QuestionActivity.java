@@ -83,6 +83,8 @@ public class QuestionActivity extends AppCompatActivity {
     private void prepareQuestion(){
         currentQuestion = QuestionsHandler.getInstance().getQuestion(questionNumber);
 
+        textViewQuestion.setText(currentQuestion.getQuestionText());
+
         String secondsString;
 
         if(currentQuestion.getSecondsToAnswer() == -1){
