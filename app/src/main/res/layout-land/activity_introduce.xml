@@ -46,10 +46,10 @@
     </LinearLayout>
 
     <fragment
-        android:name="com.example.k.quizbuster.IntroduceOne"
         android:id="@+id/fragment_place"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:name="com.example.k.quizbuster.IntroduceOne" />
 
 </LinearLayout>

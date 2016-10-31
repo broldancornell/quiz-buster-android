@@ -13,7 +13,6 @@ public class IntroduceActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduce);
-
     }
 
     public void selectFrag(View v) {
@@ -21,13 +20,13 @@ public class IntroduceActivity extends Activity {
         Fragment fr;
 
         if (v == findViewById(R.id.button2)) {
-            fr=new IntroduceTwo();
+            fr = new IntroduceTwo();
         } else {
-            fr=new IntroduceOne();
+            fr = new IntroduceOne();
         }
 
-        final FragmentManager fm=getFragmentManager();
-        FragmentTransaction fragmentTransaction=fm.beginTransaction();
+        final FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_place, fr);
         fragmentTransaction.commit();
     }

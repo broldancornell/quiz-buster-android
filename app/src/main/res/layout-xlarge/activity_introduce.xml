@@ -42,9 +42,9 @@
         android:layout_marginBottom="10dp" />
 
     <fragment
-        android:name="com.example.k.quizbuster.IntroduceOne"
         android:id="@+id/fragment_place"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:name="com.example.k.quizbuster.IntroduceOne" />
 
 </LinearLayout>

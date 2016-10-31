@@ -7,9 +7,4 @@
         android:title="about Kiwi Digital"
         quiz-buster-android:showAsAction="ifRoom" />
 
-    <item android:id="@+id/locations"
-        android:icon="@drawable/ic_report_black"
-        android:title="Locations"
-        quiz-buster-android:showAsAction="ifRoom" />
-
 </menu>

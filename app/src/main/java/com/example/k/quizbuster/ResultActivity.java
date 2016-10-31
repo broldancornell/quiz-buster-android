@@ -14,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.k.quizbuster.utility.Constants;
-
-import com.facebook.share.internal.ShareFeedContent;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
@@ -60,20 +58,14 @@ public class ResultActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.aboutKiwiDigital) {
-            Toast.makeText(ResultActivity.this, "You Clicked Kiwi Digital", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ResultActivity.this, "You clicked Kiwi Digital", Toast.LENGTH_SHORT).show();
 
-            Intent fragmentActivity = new Intent(this, IntroduceActivity.class);
-            this.startActivity(fragmentActivity);
-        }
-        else if (id == R.id.locations) {
-            Toast.makeText(ResultActivity.this, "You clicked Locations", Toast.LENGTH_SHORT).show();
+            Intent introduceActivity = new Intent(this, IntroduceActivity.class);
+            this.startActivity(introduceActivity);
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
 
 
