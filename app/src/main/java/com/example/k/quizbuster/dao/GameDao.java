@@ -1,4 +1,4 @@
-package com.example.k.quizbuster;
+package com.example.k.quizbuster.dao;
 
 import android.app.ProgressDialog;
 import android.util.Log;
