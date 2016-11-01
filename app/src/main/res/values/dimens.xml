@@ -6,6 +6,11 @@
     <dimen name="utility_landscape_button_margin">200dp</dimen>
     <dimen name="utility_tablet_button_margin">300dp</dimen>
     <dimen name="utility_landscape_tablet_button_margin">300dp</dimen>
-    <dimen name="utility_edit_text_margin">40dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
     <dimen name="utility_landscape_table_edit_text_margin">250dp</dimen>
+
+    <dimen name="utility_edit_text_margin">40dp</dimen>
+
 </resources>

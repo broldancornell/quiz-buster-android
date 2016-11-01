@@ -33,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //check internet use  begin
+        if(!ConnectionManager.isConnectedToTheInternet(MainActivity.this))
+        {
+            Toast.makeText(getApplicationContext(),"Internet is not connected",Toast.LENGTH_SHORT).show();
+        }
+
         prepareInitialValues();
 
         prepareWidgets();
@@ -109,4 +116,6 @@ public class MainActivity extends AppCompatActivity {
         nicknameActivity.putExtra("entered_quiz_code", gameCode);
         this.startActivity(nicknameActivity);
     }
+
+
 }

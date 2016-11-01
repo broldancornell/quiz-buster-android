@@ -1,12 +1,21 @@
 package com.example.k.quizbuster;
 
 import android.content.Intent;
+
+import android.graphics.Color;
+
 import android.graphics.Typeface;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import android.view.View;
+import android.widget.RelativeLayout;
+
 import android.widget.TextView;
+
 
 import com.example.k.quizbuster.objects.QuestionsHandler;
 import com.example.k.quizbuster.utility.Constants;
@@ -26,6 +35,7 @@ public class LoadActivity extends AppCompatActivity {
     private String gameCode;
     private int lastQuestion;
     private String nickname;
+    private static int count = 1;
 
     private static boolean paused;
 
@@ -41,6 +51,43 @@ public class LoadActivity extends AppCompatActivity {
         getActivityArguments();
 
         determineAction();
+
+
+        RelativeLayout activity_load = (RelativeLayout)findViewById(R.id.activity_load);
+        // onLongClickListener is for changing background color
+        activity_load.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View v) {
+
+                if      (count % 6 == 1) {
+                    v.setBackgroundColor(Color.RED);
+                    count++;
+                }
+                else if (count % 6 == 2){
+                    v.setBackgroundColor(Color.GREEN);
+                    count++;
+                }
+                else if (count % 6 == 3){
+                    v.setBackgroundColor(Color.BLUE);
+                    count++;
+                }
+                else if (count % 6 == 4){
+                    v.setBackgroundColor(Color.YELLOW);
+                    count++;
+                }
+                else if (count % 6 == 5){
+                    v.setBackgroundColor(Color.GRAY);
+                    count++;
+                }
+                else if (count % 6 == 0){
+                    v.setBackgroundColor(Color.WHITE);
+                    count++;
+                }
+                return false; //return true;
+            }
+        });
+
+
     }
 
     private void getActivityArguments(){

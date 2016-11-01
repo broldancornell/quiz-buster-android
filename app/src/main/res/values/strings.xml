@@ -11,5 +11,12 @@
     <string name="question_text_view">Question:</string>
     <string name="time_left">time left:</string>
     <string name="final_score">Final Score:</string>
+
+    <string name="title_activity_location">LocationActivity</string>
+
+    <string name="introduceKiwiDigital">Kiwi Digital was established in 2016. Kiwi Digital has developed a lot of software.</string>
+    <string name="introduceDevelopers">Brian Roldan and Insoo Kim work for Kiwi Digital. They have plentiful experience about developing software and Android applications.</string>
+
     <string name="share_on_fb">Share on FB</string>
+
 </resources>

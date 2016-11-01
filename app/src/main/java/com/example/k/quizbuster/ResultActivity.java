@@ -4,32 +4,31 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.k.quizbuster.utility.Constants;
-import com.example.k.quizbuster.utility.JsonHttpRequest;
-import com.example.k.quizbuster.utility.JsonHttpRequestCallback;
-import com.facebook.share.internal.ShareFeedContent;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ResultActivity extends AppCompatActivity {
 
     private TextView textViewFinalScore;
     private TextView textViewFinalScoreNumber;
+
     private Button buttonShare;
     private Button buttonGoMain;
 
-    private String gameCode;
-    private String nickname;
-    private int bustPoints;
+    private String   gameCode;
+    private String   nickname;
+    private int      bustPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +37,44 @@ public class ResultActivity extends AppCompatActivity {
 
         getActivityParameters();
         prepareWidgets();
+
+        // Code for ActionBar
+        ActionBar bar = this.getSupportActionBar();
+        //bar.setDisplayHomeAsUpEnabled(true);  //set Up button
+        bar.setTitle("More Info.");   //set title of Action Bar
+        bar.setDisplayShowTitleEnabled(true);
+        bar.show();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.getMenuInflater().inflate(R.menu.actionbarmenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.aboutKiwiDigital) {
+            Toast.makeText(ResultActivity.this, "You clicked Kiwi Digital", Toast.LENGTH_SHORT).show();
+
+            Intent introduceActivity = new Intent(this, IntroduceActivity.class);
+            this.startActivity(introduceActivity);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     private void getActivityParameters() {
         gameCode = this.getIntent().getExtras().getString(Constants.CURRENT_GAME_CODE_KEY);
         nickname = this.getIntent().getExtras().getString(Constants.CURRENT_NICKNAME_KEY);
         bustPoints = this.getIntent().getExtras().getInt(Constants.BUST_POINTS_KEY);
     }
+
 
     private void prepareWidgets(){
         textViewFinalScore = (TextView) findViewById(R.id.text_view_final_score_label);
