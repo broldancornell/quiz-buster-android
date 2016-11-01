@@ -2,6 +2,7 @@ package com.example.k.quizbuster.dao;
 
 import android.util.Log;
 
+import com.example.k.quizbuster.utility.AnswerCallback;
 import com.example.k.quizbuster.utility.Constants;
 import com.example.k.quizbuster.utility.CurrentQuestionFetchCallback;
 import com.example.k.quizbuster.utility.JsonHttpRequest;
@@ -31,6 +32,7 @@ public class QuizDao {
     private final String questionsEndPoint = Constants.HOST_NAME + "/service/buster/questions.php?game_code=";
     private final String currentQuestionEndPoint = Constants.HOST_NAME + "/service/buster/current.php?game_code=";
     private final String resultEndPoint = Constants.HOST_NAME + "/service/buster/results.php?";
+    private final String answerEndPoint = Constants.HOST_NAME + "/service/buster/answer.php?";
 
     public void getQuestions(String gameCode, final QuestionFetchCallback callback){
         JsonHttpRequest request = new JsonHttpRequest(questionsEndPoint + gameCode, new JsonHttpRequestCallback() {
@@ -78,6 +80,24 @@ public class QuizDao {
                 Log.e(this.getClass().getSimpleName(), message);
             }
         });
+        request.execute();
+    }
+
+    public void sendAnswer(String gameCode, String nickname, int questionNumber, int answerNumber, int timeLeft, final AnswerCallback callback){
+        String parameters = "game_code=" + gameCode + "&nickname=" + nickname + "&question_number=" + questionNumber + "&answer=" + answerNumber + "&time_left=" + timeLeft;
+
+        JsonHttpRequest request = new JsonHttpRequest(answerEndPoint + parameters, new JsonHttpRequestCallback() {
+            @Override
+            public void onCompleted(JSONObject data) {
+                callback.onValid();
+            }
+
+            @Override
+            public void onError(String message) {
+                callback.onInvalid();
+            }
+        });
+
         request.execute();
     }
 

@@ -14,8 +14,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.k.quizbuster.dao.QuizDao;
 import com.example.k.quizbuster.objects.Question;
 import com.example.k.quizbuster.objects.QuestionsHandler;
+import com.example.k.quizbuster.utility.AnswerCallback;
 import com.example.k.quizbuster.utility.Constants;
 import com.example.k.quizbuster.utility.JsonHttpRequest;
 import com.example.k.quizbuster.utility.JsonHttpRequestCallback;
@@ -41,8 +43,6 @@ public class QuestionActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
     private Timer timer;
-
-    private final String answerEndPoint = Constants.HOST_NAME + "/service/buster/answer.php?";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,22 +160,19 @@ public class QuestionActivity extends AppCompatActivity {
         timer.unset();
         int timeLeft = timer.getSeconds();
         Log.i(this.getClass().getSimpleName(), "Time recorded: " + timeLeft);
-        String parameters = "game_code=" + this.gameCode + "&nickname=" + this.nickname + "&question_number=" + questionNumber + "&answer=" + answerNumber + "&time_left=" + timeLeft;
 
-        JsonHttpRequest request = new JsonHttpRequest(answerEndPoint + parameters, new JsonHttpRequestCallback() {
+        QuizDao.getInstance().sendAnswer(gameCode, nickname, questionNumber, answerNumber, timeLeft, new AnswerCallback() {
             @Override
-            public void onCompleted(JSONObject data) {
+            public void onValid() {
                 moveToWaitingActivity();
             }
 
             @Override
-            public void onError(String message) {
+            public void onInvalid() {
                 progressDialog.hide();
-                Log.e(this.getClass().getSimpleName(), message);
             }
         });
 
-        request.execute();
     }
 
     private void moveToWaitingActivity(){
