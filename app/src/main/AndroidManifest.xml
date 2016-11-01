@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.k.quizbuster">
+    package="com.kiwidigital.k.quizbuster">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".CoreApplication"
+        android:name="com.kiwidigital.k.quizbuster.CoreApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.kiwidigital.k.quizbuster.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,13 +21,13 @@
         </activity>
 
 
-        <activity android:name=".IntroduceActivity" android:configChanges="orientation|screenSize|keyboardHidden">
+        <activity android:name="com.kiwidigital.k.quizbuster.IntroduceActivity" android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <activity android:name=".NicknameActivity"/>
-        <activity android:name=".QuestionActivity" android:configChanges="orientation|screenSize|keyboardHidden"/>
-        <activity android:name=".ResultActivity" />
-        <activity android:name=".LoadActivity" android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name="com.kiwidigital.k.quizbuster.NicknameActivity"/>
+        <activity android:name="com.kiwidigital.k.quizbuster.QuestionActivity" android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name="com.kiwidigital.k.quizbuster.ResultActivity" />
+        <activity android:name="com.kiwidigital.k.quizbuster.LoadActivity" android:configChanges="orientation|screenSize|keyboardHidden"/>
         <provider android:authorities="com.facebook.app.FacebookContentProvider1087010071415769"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
