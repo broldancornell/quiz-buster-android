@@ -3,6 +3,7 @@ package com.example.k.quizbuster;
 import android.app.ProgressDialog;
 import android.util.Log;
 
+import com.example.k.quizbuster.utility.Constants;
 import com.example.k.quizbuster.utility.JsonHttpRequest;
 import com.example.k.quizbuster.utility.JsonHttpRequestCallback;
 import com.example.k.quizbuster.utility.ValidationCallback;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
  */
 
 public class GameDao {
+    private final String validationEndPoint = Constants.HOST_NAME + "/service/buster/validate.php?game_code=";
 
     private static GameDao instance;
 
@@ -26,7 +28,10 @@ public class GameDao {
         return instance;
     }
 
-    public void validateGameCode(String url, final ValidationCallback callback, final ProgressDialog progressDialog){
+    public void validateGameCode(String gameCode, final ValidationCallback callback, final ProgressDialog progressDialog){
+
+        String url = validationEndPoint + gameCode;
+
         new JsonHttpRequest(url, new JsonHttpRequestCallback() {
             @Override
             public void onCompleted(JSONObject data) {

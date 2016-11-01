@@ -1,9 +1,7 @@
 package com.example.k.quizbuster;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,8 +15,6 @@ import com.example.k.quizbuster.utility.Constants;
 import com.example.k.quizbuster.utility.ValidationCallback;
 
 public class MainActivity extends AppCompatActivity {
-
-    private final String validationEndPoint = Constants.HOST_NAME + "/service/buster/validate.php?game_code=";
 
     private Typeface fontStyle;  // Typeface for Font style
     private EditText editTextGameCode; //game code
@@ -40,20 +36,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Internet is not connected",Toast.LENGTH_SHORT).show();
         }
 
-        prepareInitialValues();
-
         prepareWidgets();
 
-    }
-
-    private void prepareInitialValues(){
-        SharedPreferences sharedPref = super.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(Constants.CURRENT_GAME_CODE_KEY, null);
-        editor.putString(Constants.CURRENT_NICKNAME_KEY, null);
-        editor.putInt(Constants.LAST_QUESTION_KEY, -1);
-        editor.putBoolean(Constants.FETCHED_QUESTIONS_KEY, false);
-        editor.apply();
     }
 
     private void prepareWidgets(){
@@ -71,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         this.progressDialog = new ProgressDialog(this);
         //set the text
         this.progressDialog.setMessage("Please wait");
+        this.progressDialog.setCancelable(false);
 
     }
 
@@ -79,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             ConnectionManager.showConnectionAlert(view.getContext());
             return;
         }
+
         //get the text from the edit text widget
         final String gameCode = editTextGameCode.getText().toString();
 
@@ -94,9 +80,7 @@ public class MainActivity extends AppCompatActivity {
         //show the progress dialog to 1. let the user know that it is processing. 2. Prevent further action from the user.
         this.progressDialog.show();
 
-        String url = validationEndPoint + gameCode;
-
-        GameDao.getInstance().validateGameCode(url, new ValidationCallback() {
+        GameDao.getInstance().validateGameCode(gameCode, new ValidationCallback() {
             @Override
             public void onValid() {
                 moveOnToNicknameActivity();
@@ -116,6 +100,4 @@ public class MainActivity extends AppCompatActivity {
         nicknameActivity.putExtra("entered_quiz_code", gameCode);
         this.startActivity(nicknameActivity);
     }
-
-
 }
