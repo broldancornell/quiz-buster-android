@@ -1,13 +1,10 @@
 package com.example.k.quizbuster;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -17,19 +14,13 @@ import android.widget.Toast;
 
 import com.example.k.quizbuster.utility.ConnectionManager;
 import com.example.k.quizbuster.utility.Constants;
-import com.example.k.quizbuster.utility.JsonHttpRequest;
-import com.example.k.quizbuster.utility.JsonHttpRequestCallback;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.k.quizbuster.utility.ValidationCallback;
 
 public class NicknameActivity extends AppCompatActivity {
 
     private EditText editTextNickname;
     private String quizCode;
     private String nickname;
-
-    private final String joinEndPoint = Constants.HOST_NAME + "/service/buster/join.php?";
 
     private ProgressDialog progressDialog;
 
@@ -60,6 +51,7 @@ public class NicknameActivity extends AppCompatActivity {
 
         this.progressDialog = new ProgressDialog(this);
         this.progressDialog.setMessage("Please wait");
+        this.progressDialog.setCancelable(false);
 
         textViewQuizCode.setText(quizCode);
 
@@ -91,69 +83,23 @@ public class NicknameActivity extends AppCompatActivity {
         }
 
         this.nickname = nickname;
+
         this.progressDialog.show();
 
-        String parameters = "game_code=" + this.quizCode + "&nickname=" + this.nickname;
-
-        JsonHttpRequest request = new JsonHttpRequest(joinEndPoint + parameters, new JsonHttpRequestCallback() {
+        GameDao.getInstance().joinGame(quizCode, nickname, new ValidationCallback() {
             @Override
-            public void onCompleted(JSONObject data) {
-                progressDialog.hide();
-                processValidationResult(data);
-            }
-
-            @Override
-            public void onError(String message) {
-                progressDialog.hide();
-                Log.e(this.getClass().getSimpleName(), message);
-            }
-        });
-
-        request.execute();
-
-    }
-
-    private void processValidationResult(JSONObject result){
-        if(result == null){
-            Log.e(this.getClass().getSimpleName(), "Result JSON is null.");
-            progressDialog.hide();
-            return;
-        }
-
-        try {
-            int status = result.getInt("status");
-            String statusMessage = result.getString("status_message");
-            if(status != 200){
-                Log.e(this.getClass().getSimpleName(), "HTTP result status indicated an error: " + statusMessage);
-                return;
-            }
-
-            //decrypt JSON object
-            JSONObject data = new JSONObject(result.getString("data"));
-            if(data == null){
-                Log.e(this.getClass().getSimpleName(), "HTTP result did not include data object");
-                return;
-            }
-
-            boolean success = data.getBoolean("success");
-
-            if(success){
+            public void onValid() {
                 moveToWaitingActivity();
-            }else{
-                String message = data.getString("message");
+            }
+
+            @Override
+            public void onInvalid(String message) {
                 if(message == null || message.trim().isEmpty()){
                     message = "The nickname is invalid";
                 }
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(NicknameActivity.this, message, Toast.LENGTH_LONG).show();
             }
-
-        } catch (JSONException exception) {
-            Log.e(this.getClass().getSimpleName(), "JSON exception encountered", exception);
-        }finally {
-
-            progressDialog.hide();
-
-        }
+        }, progressDialog);
 
     }
 

@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 public class GameDao {
     private final String validationEndPoint = Constants.HOST_NAME + "/service/buster/validate.php?game_code=";
+    private final String joinEndPoint = Constants.HOST_NAME + "/service/buster/join.php?";
 
     private static GameDao instance;
 
@@ -44,6 +45,26 @@ public class GameDao {
                 progressDialog.hide();
             }
         }).execute();
+    }
+
+    public void joinGame(String gameCode, String nickname, final ValidationCallback callback, final ProgressDialog progressDialog){
+        String parameters = "game_code=" + gameCode + "&nickname=" + nickname;
+        String url = joinEndPoint + parameters;
+
+        JsonHttpRequest request = new JsonHttpRequest(url, new JsonHttpRequestCallback() {
+            @Override
+            public void onCompleted(JSONObject data) {
+                processJoinResult(data, callback);
+                progressDialog.hide();
+            }
+
+            @Override
+            public void onError(String message) {
+                progressDialog.hide();
+            }
+        });
+
+        request.execute();
     }
 
     private void processValidationResult(JSONObject result, ValidationCallback callback){
@@ -74,6 +95,42 @@ public class GameDao {
                 callback.onValid();
             }else{
                 callback.onInvalid("");
+            }
+
+        } catch (JSONException exception) {
+            Log.e(this.getClass().getSimpleName(), "JSON exception encountered", exception);
+        }
+
+    }
+
+    private void processJoinResult(JSONObject result, ValidationCallback callback) {
+
+        if(result == null){
+            Log.e(this.getClass().getSimpleName(), "Result JSON is null.");
+            return;
+        }
+
+        try {
+            int status = result.getInt("status");
+            String statusMessage = result.getString("status_message");
+            if(status != 200){
+                Log.e(this.getClass().getSimpleName(), "HTTP result status indicated an error: " + statusMessage);
+                return;
+            }
+
+            //decrypt JSON object
+            JSONObject data = new JSONObject(result.getString("data"));
+            if(data == null){
+                Log.e(this.getClass().getSimpleName(), "HTTP result did not include data object");
+                return;
+            }
+
+            boolean success = data.getBoolean("success");
+
+            if(success){
+                callback.onValid();
+            }else{
+                callback.onInvalid(data.getString("message"));
             }
 
         } catch (JSONException exception) {
