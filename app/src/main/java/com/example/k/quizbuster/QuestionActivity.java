@@ -71,6 +71,7 @@ public class QuestionActivity extends AppCompatActivity {
         textViewTimeValue.setTypeface(fontStyle);
 
         this.progressDialog = new ProgressDialog(this);
+        this.progressDialog.setCancelable(false);
         this.progressDialog.setMessage("Please wait");
     }
 
